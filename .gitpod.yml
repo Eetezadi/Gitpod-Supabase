@@ -5,6 +5,7 @@ image:
 tasks:
   - name: Supabase Installation
     init: supabase start
+    command: supabase status -o env | sed 's/^/SUPABASE_/' > .env # Copies local dev environment in .env
 
 ports:
   - name: Supabase
