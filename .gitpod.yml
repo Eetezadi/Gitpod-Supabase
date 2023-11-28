@@ -1,3 +1,4 @@
+
 image:
     file: .gitpod.Dockerfile
 
@@ -11,3 +12,7 @@ ports:
     port: 54323
     onOpen: open-browser
 
+
+vscode:
+  extensions:
+    - denoland.vscode-deno
