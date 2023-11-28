@@ -1,2 +1,14 @@
 image:
     file: .gitpod.Dockerfile
+
+tasks:
+  - name: Script Task
+    init: supabase start
+    command: echo 'start script'
+
+ports:
+  - name: Supabase
+    description: Frontend of the Supabase
+    port: 54323
+    onOpen: open-browser
+
