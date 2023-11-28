@@ -4,7 +4,6 @@ image:
 tasks:
   - name: Script Task
     init: supabase start
-    command: echo 'start script'
 
 ports:
   - name: Supabase
