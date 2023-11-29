@@ -13,6 +13,11 @@ ports:
     description: Frontend of the Supabase
     port: 54323
     onOpen: open-browser
+  - name: API
+    description: API Endpoint
+    port: 54321
+    visibility: public
+    onOpen: ignore
 
 
 vscode:
