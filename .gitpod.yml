@@ -4,15 +4,21 @@ image:
 
 tasks:
   - name: Supabase Installation
-    init: supabase start
-    command: 
-      supabase status -o env | sed 's/^/SUPABASE_/' > .env # Copies local dev environment in .env
+    init: supabase init
+    command: |
+      supabase start
+      # Extract environment variables from supabase CLI, write to .env
+      supabase status -o env | sed 's/^/SUPABASE_/' > .env
+      # Load .env variables
+      if [ -f .env ]; then
+        export $(grep -v '^#' .env | xargs)
+      fi
 
 ports:
   - name: Supabase
     description: Frontend of the Supabase
     port: 54323
-    onOpen: open-browser
+    onOpen: open-preview
   - name: API
     description: API Endpoint
     port: 54321

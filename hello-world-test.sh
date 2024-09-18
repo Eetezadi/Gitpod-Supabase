@@ -1,7 +1,4 @@
-#!/bin/bash
-
-# Sources the variables of the .env file
-source .env
+#!/bin/sh
 
 # API call to the hello-world edge function
 curl --request POST 'http://localhost:54321/functions/v1/hello-world' \
