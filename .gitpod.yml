@@ -18,7 +18,7 @@ ports:
   - name: Supabase
     description: Frontend of the Supabase
     port: 54323
-    onOpen: open-preview
+    onOpen: open-browser #open-preview not working
   - name: API
     description: API Endpoint
     port: 54321
