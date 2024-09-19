@@ -4,15 +4,34 @@ image:
 
 tasks:
   - name: Supabase Installation
-    init: supabase start
-    command: 
-      supabase status -o env | sed 's/^/SUPABASE_/' > .env # Copies local dev environment in .env
+    init: supabase init --with-vscode-workspace
+    command: |
+      supabase start
+      # Extract environment variables from supabase CLI, write to .env
+      supabase status -o env | sed 's/^/SUPABASE_/' > .env
+      gp sync-done install
+
+  - name: Link to hosted Supabase
+    command: |
+      gp sync-await install
+      if [ -z "$SUPABASE_ACCESS_TOKEN" ]; then
+        echo "SUPABASE_ACCESS_TOKEN is NOT set. Skipping. Set in Gitpod to connect..."
+      else
+        supabase login --token "$SUPABASE_ACCESS_TOKEN"
+        echo "SUPABASE_ACCESS_TOKEN is set. Account connected."
+      fi
+      if [ -z "$SUPABASE_PROJECT_REF" ]; then
+        echo "SUPABASE_PROJECT_REF is NOT set. Skipping. Set in Gitpod to link..."
+      else
+        supabase link --project-ref "$SUPABASE_PROJECT_REF" <<< ""
+        echo "SUPABASE_PROJECT_REF is set. Account connected."
+      fi
 
 ports:
   - name: Supabase
     description: Frontend of the Supabase
     port: 54323
-    onOpen: open-browser
+    onOpen: open-browser #open-preview not working
   - name: API
     description: API Endpoint
     port: 54321
