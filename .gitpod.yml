@@ -4,7 +4,7 @@ image:
 
 tasks:
   - name: Supabase Installation
-    init: supabase init --with-vscode-workspace
+    init: echo "Image built. Lets start Supabase..."
     command: |
       supabase start
       # Extract environment variables from supabase CLI, write to .env
