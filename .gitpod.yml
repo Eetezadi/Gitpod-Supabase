@@ -20,12 +20,6 @@ tasks:
         supabase login --token "$SUPABASE_ACCESS_TOKEN"
         echo "SUPABASE_ACCESS_TOKEN is set. Account connected."
       fi
-      if [ -z "$SUPABASE_PROJECT_REF" ]; then
-        echo "SUPABASE_PROJECT_REF is NOT set. Skipping. Set in Gitpod to link..."
-      else
-        supabase link --project-ref "$SUPABASE_PROJECT_REF" <<< ""
-        echo "SUPABASE_PROJECT_REF is set. Account connected."
-      fi
 
 ports:
   - name: Supabase
